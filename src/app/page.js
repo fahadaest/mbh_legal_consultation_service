@@ -1,9 +1,11 @@
+import HeroSection from "@/components/Home/HeroSection";
+
 export default function Home() {
     return (
         <>
             <main>
                 <section className="h-screen">
-                    First Section
+                    <HeroSection />
                 </section>
 
                 <section className="h-screen bg-offWhite">
