@@ -24,9 +24,6 @@ export default function OurTeam({ locale }) {
         );
     };
 
-    if (isLoading) return <div className="text-center">Loading team...</div>;
-    if (error) return <div className="text-center text-red-500">Failed to load team data.</div>;
-
     return (
         <div className="flex flex-col items-center justify-center w-full h-full px-4 py-10 space-y-8">
             <div className="text-center">
@@ -49,7 +46,7 @@ export default function OurTeam({ locale }) {
                     <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${index * (100 / visibleCards)}%)` }}>
                         {(data || []).map((member, i) => (
                             <div key={i} className="flex-none w-1/3 px-2">
-                                <div className="bg-white rounded-lg shadow-md p-4 text-center">
+                                <div className=" p-4 text-center">
                                     <Image
                                         src={member.imageUrl}
                                         alt={member.name}
@@ -57,13 +54,21 @@ export default function OurTeam({ locale }) {
                                         height={100}
                                         className="mx-auto rounded object-cover"
                                     />
-                                    <h3 className="mt-4 text-xl font-semibold text-gray-800">{member.name}</h3>
-                                    <p className="text-sm text-gray-500">{member.position}</p>
+                                    <h3 className="mt-4 text-2xl font-semibold text-darkBrown">{member.name}</h3>
+                                    <p className="text-base text-lightGrey">{member.position}</p>
+
                                     <div className="flex justify-center gap-4 mt-3 text-gray-600">
-                                        <a href="#" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-                                        <a href="#" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-                                        <a href="mailto:#"><FaEnvelope /></a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">
+                                            <Image src="/images/whatsapp.svg" alt="Logo" width={24} height={24} className="inline-block" />
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">
+                                            <Image src="/images/phone.svg" alt="Logo" width={24} height={24} className="inline-block" />
+                                        </a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">
+                                            <Image src="/images/email.svg" alt="Logo" width={24} height={24} className="inline-block" />
+                                        </a>
                                     </div>
+
                                 </div>
                             </div>
                         ))}

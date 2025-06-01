@@ -27,7 +27,7 @@ export default function Clients({ locale }) {
     const current = feedbacks[index];
 
     return (
-        <div className="p-6 space-y-10 flex flex-col items-center justify-center gap-10 text-white min-h-screen">
+        <div className="p-6 px-40 space-y-10 flex flex-col items-center justify-center gap-10 text-white min-h-screen">
             <div className="space-y-4 max-w-2xl text-left self-start">
                 <h2 className="text-3xl font-bold">What our clients are saying</h2>
                 <p>
@@ -35,27 +35,29 @@ export default function Clients({ locale }) {
                 </p>
             </div>
 
-
             {current && (
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <div className="w-full md:w-1/3 flex justify-center">
+                <div className="flex flex-col md:flex-row items-stretch gap-8">
+                    <div className="flex-none">
                         <Image
                             src={current.imageUrl}
                             alt={current.name}
                             width={300}
                             height={300}
-                            className="object-cover"
+                            className="object-cover rounded-lg"
                         />
                     </div>
-                    <div className="w-full md:w-2/3 space-y-4 text-left">
+                    <div className="flex flex-col justify-between w-full md:w-2/3 text-left">
                         <p className="text-lg">{current.remarks}</p>
-                        <h4 className="text-xl font-semibold">{current.name}</h4>
-                        <span>{current.position}</span>
+
+                        <div>
+                            <h4 className="text-xl font-semibold">{current.name}</h4>
+                            <span>{current.position}</span>
+                        </div>
                     </div>
                 </div>
             )}
 
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-end gap-6 w-full">
                 <button onClick={prevTestimonial} className="p-2 border border-white rounded-full hover:bg-white hover:text-black transition">
                     <KeyboardArrowLeftIcon />
                 </button>
