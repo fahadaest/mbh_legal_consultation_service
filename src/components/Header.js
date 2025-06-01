@@ -98,7 +98,7 @@ export default function Header() {
                     </div>
 
                     <button className={`px-3 py-1 rounded-md text-sm font-medium transition-colors duration-200 border ${darkText ? "border-darkBrown text-darkBrown" : "border-white text-white hover:bg-white hover:text-black"}`}>
-                        Book Appointment
+                        {t('bookAppointment')}
                     </button>
                 </div>
             </div>

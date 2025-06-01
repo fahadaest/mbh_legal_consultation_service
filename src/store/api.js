@@ -49,16 +49,6 @@ export const api = createApi({
                 }));
             },
         }),
-        getLanguage: builder.query({
-            query: () => `/language`,
-        }),
-        updateLanguage: builder.mutation({
-            query: ({ body }) => ({
-                url: `/language`,
-                method: 'PUT',
-                body,
-            }),
-        }),
         subscribeEmail: builder.mutation({
             query: (email) => ({
                 url: '/email-subscriptions',
@@ -73,7 +63,5 @@ export const {
     useGetHeroSectionQuery,
     useGetTeamQuery,
     useGetCustomerFeedbackQuery,
-    useGetLanguageQuery,
-    useUpdateLanguageMutation,
     useSubscribeEmailMutation
 } = api;
