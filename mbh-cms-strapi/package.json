@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "mbh-cms-strapi",
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
@@ -35,7 +35,7 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "f78bec24-8527-4726-8814-faf0e6a9269d",
-    "installId": "0a61c073439010275fe8cb2d8cb541087fcaf27ad263e752133d50633761067b"
+    "uuid": "33698933-2c60-4dc6-9005-df840661c063",
+    "installId": "0ec2e686b8235f4e9f3095d38e58dc4b60e25487eba85b2240674ab9e0ed6d60"
   }
 }
