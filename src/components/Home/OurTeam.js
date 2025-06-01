@@ -32,8 +32,7 @@ export default function OurTeam({ locale }) {
             <div className="text-center">
                 <h2 className="text-4xl font-bold text-darkBrown mb-4">Our Team</h2>
                 <p className="text-darkGrey max-w-2xl">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                    Meet the dedicated professionals behind our success. With diverse expertise and a shared commitment to excellence, our team works collaboratively to deliver outstanding results and drive innovation.
                 </p>
             </div>
 

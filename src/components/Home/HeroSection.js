@@ -21,7 +21,7 @@ export default function HeroSection({ locale }) {
     useEffect(() => {
         if (!data || data.length === 0) return;
         const interval = setInterval(() => {
-            nextContent();
+            setIndex((prev) => (prev + 1) % data.length);
         }, 8000);
         return () => clearInterval(interval);
     }, [data]);
