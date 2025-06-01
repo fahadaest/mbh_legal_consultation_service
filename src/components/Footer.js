@@ -4,6 +4,7 @@ import { FaTwitter, FaFacebookF, FaGoogle } from 'react-icons/fa';
 import { useSubscribeEmailMutation } from '@/store/api';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { useTranslations } from 'next-intl';
 
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -11,6 +12,7 @@ const validationSchema = Yup.object({
 
 export default function Footer() {
     const [subscribeEmail] = useSubscribeEmailMutation();
+    const t = useTranslations();
 
     return (
         <footer className="bg-darkBrown text-white px-8 py-12 text-sm">
@@ -18,7 +20,6 @@ export default function Footer() {
                 <div></div>
 
                 <div className="flex items-center gap-6 ml-auto">
-                    <span className="hidden md:inline-block">Contacts</span>
 
                     <Formik
                         initialValues={{ email: '' }}
@@ -45,7 +46,7 @@ export default function Footer() {
                                     <Field
                                         type="email"
                                         name="email"
-                                        placeholder="Your email"
+                                        placeholder={t('email')}
                                         className="px-4 py-2 pr-24 rounded text-black w-full"
                                     />
                                     <button
@@ -53,7 +54,7 @@ export default function Footer() {
                                         disabled={isSubmitting}
                                         className="absolute top-1/2 right-1 -translate-y-1/2 bg-darkBrown rounded-md text-white px-4 py-1"
                                     >
-                                        {isSubmitting ? '...' : 'Subscribe'}
+                                        {isSubmitting ? '...' : t('subscribe')}
                                     </button>
                                 </div>
                                 <ErrorMessage name="email" component="div" className="text-red-400 text-xs absolute -bottom-5 left-0" />
@@ -62,6 +63,8 @@ export default function Footer() {
                             </Form>
                         )}
                     </Formik>
+
+                    <span className="hidden md:inline-block">{t('contacts')}</span>
 
                     <div className="flex gap-4 text-white">
                         <a href="#" aria-label="Twitter" className="hover:text-gray-700">
@@ -79,14 +82,14 @@ export default function Footer() {
 
             <div className="flex flex-col md:flex-row md:justify-between items-center text-gray-400">
                 <div className="flex flex-wrap justify-center md:justify-start gap-4 mb-4 md:mb-0">
-                    <a href="#" className="hover:text-white">About</a>
-                    <a href="#" className="hover:text-white">Our Strategy</a>
-                    <a href="#" className="hover:text-white">Our Advantages</a>
-                    <a href="#" className="hover:text-white">Social Responsibility</a>
-                    <a href="#" className="hover:text-white">Our Services</a>
+                    <a href="#" className="hover:text-white">{t('footerAbout')}</a>
+                    <a href="#" className="hover:text-white">{t('ourStrategy')}</a>
+                    <a href="#" className="hover:text-white">{t('ourAdvantages')}</a>
+                    <a href="#" className="hover:text-white">{t('socialResponsibility')}</a>
+                    <a href="#" className="hover:text-white">{t('ourServices')}</a>
                 </div>
 
-                <div>© 2024. All rights reserved.</div>
+                <div>{t('footerRights')}</div>
             </div>
         </footer>
     );
