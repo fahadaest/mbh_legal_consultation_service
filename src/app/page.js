@@ -1,8 +1,12 @@
+'use client'
 import HeroSection from "@/components/Home/HeroSection";
 import OurTeam from "@/components/Home/OurTeam";
 import Clients from "@/components/Home/Clients";
+import { useGetLanguageQuery } from "@/store/api";
 
 export default function Home() {
+    const { data, isLoading } = useGetLanguageQuery();
+    console.log(data)
     return (
         <>
             <main>

@@ -1,31 +1,69 @@
+'use client';
+
 import { FaTwitter, FaFacebookF, FaGoogle } from 'react-icons/fa';
+import { useSubscribeEmailMutation } from '@/store/api';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+    email: Yup.string().email('Invalid email').required('Email is required'),
+});
 
 export default function Footer() {
+    const [subscribeEmail] = useSubscribeEmailMutation();
+
     return (
         <footer className="bg-darkBrown text-white px-8 py-12 text-sm">
-            <div className="flex flex-col md:flex-row md:justify-between items-center border-b border-gray-700 pb-6 mb-6w-full">
+            <div className="flex flex-col md:flex-row md:justify-between items-center border-b border-gray-700 pb-6 mb-6 w-full">
                 <div></div>
+
                 <div className="flex items-center gap-6 ml-auto">
                     <span className="hidden md:inline-block">Contacts</span>
 
-                    <form className="flex items-center gap-2">
-                        <div className="relative">
-                            <input
-                                type="email"
-                                placeholder="Your email"
-                                className="px-4 py-2 pr-24 rounded text-black"
-                            />
-                            <button
-                                type="submit"
-                                className="absolute top-1/2 right-1 -translate-y-1/2 bg-darkBrown rounded-md text-white px-4 py-1"
-                            >
-                                Subscribe
-                            </button>
-                        </div>
-                    </form>
+                    <Formik
+                        initialValues={{ email: '' }}
+                        validationSchema={validationSchema}
+                        onSubmit={async (values, { resetForm, setSubmitting, setStatus }) => {
+                            try {
+                                await subscribeEmail(values.email).unwrap();
+                                setStatus({ success: 'Subscribed successfully!' });
+                                resetForm();
+                            } catch (error) {
+                                if (error?.status === 409) {
+                                    setStatus({ error: 'Email is already subscribed.' });
+                                } else {
+                                    setStatus({ error: 'Something went wrong. Please try again.' });
+                                }
+                            } finally {
+                                setSubmitting(false);
+                            }
+                        }}
+                    >
+                        {({ isSubmitting, status }) => (
+                            <Form className="flex items-center gap-2 relative">
+                                <div className="relative">
+                                    <Field
+                                        type="email"
+                                        name="email"
+                                        placeholder="Your email"
+                                        className="px-4 py-2 pr-24 rounded text-black w-full"
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="absolute top-1/2 right-1 -translate-y-1/2 bg-darkBrown rounded-md text-white px-4 py-1"
+                                    >
+                                        {isSubmitting ? '...' : 'Subscribe'}
+                                    </button>
+                                </div>
+                                <ErrorMessage name="email" component="div" className="text-red-400 text-xs absolute -bottom-5 left-0" />
+                                {status?.error && <div className="text-red-400 text-xs absolute -bottom-5 right-0">{status.error}</div>}
+                                {status?.success && <div className="text-green-400 text-xs absolute -bottom-5 right-0">{status.success}</div>}
+                            </Form>
+                        )}
+                    </Formik>
 
-
-                    <div className="flex gap-4 text-black">
+                    <div className="flex gap-4 text-white">
                         <a href="#" aria-label="Twitter" className="hover:text-gray-700">
                             <FaTwitter size={20} />
                         </a>

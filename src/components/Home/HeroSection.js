@@ -62,7 +62,7 @@ export default function HeroSection({ locale }) {
                             <div className="flex-[1] flex items-center justify-center p-4">
                                 <div className="relative aspect-square w-full bg-lightBrown">
                                     <Image
-                                        src={item.imageUrl}
+                                        src={item?.imageUrl}
                                         alt={`Slide ${i + 1}`}
                                         fill
                                         className="object-cover rounded"
